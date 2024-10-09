@@ -88,7 +88,7 @@ async function main() {
   const to = "0xd05B52EE1ECbAf2e4Ad3a57D97ed35d4f7C2fbF6";
   const sender = "0x44485caDb20D9a59aE1e407fA1679dE9c09D5Db9";
 
-  const userOp = {
+  const userOp_ = {
     to: to,
     value: 5n,
     data: encodeFunctionData({
@@ -110,14 +110,14 @@ async function main() {
     callType: "delegatecall",
   };
 
-  const signature = await kernelClient.signUserOperation({
+  const userOp = await kernelClient.signUserOperation({
     account,
     userOperation: {
-      callData: await account.encodeCallData(userOp),
+      callData: await account.encodeCallData(userOp_),
     },
   });
 
-  console.log({ signature });
+  console.log({ userOp });
 }
 
 main();
